@@ -11,3 +11,9 @@
   column-gap: 25px;
   align-items: start;
 }
+
+.film {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

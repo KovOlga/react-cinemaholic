@@ -19,9 +19,21 @@ const request = (url: string, options: IOptions) => {
 };
 
 export const getTopFilmsList = (): Promise<any> => {
-  console.log("njnjn");
   return request(
     "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=10&rating.imdb=10",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-KEY": "D8K67KE-8F9M6D5-K40CBW6-QHHZMY1",
+      },
+    }
+  );
+};
+
+export const getFilmByName = (name: string): Promise<any> => {
+  return request(
+    `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=${name}`,
     {
       method: "GET",
       headers: {

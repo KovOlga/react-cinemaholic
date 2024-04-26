@@ -1,10 +1,13 @@
 import { AppDispatch, AppThunk } from "../types";
-import { getTopFilmsList } from "./api";
+import { getFilmByName, getTopFilmsList } from "./api";
 
 export const GET_TOP_FILMS_REQUEST = "GET_TOP_FILMS_REQUEST";
 export const GET_TOP_FILMS_SUCCESS = "GET_TOP_FILMS_SUCCESS";
 export const GET_TOP_FILMS_FAILED = "GET_TOP_FILMS_FAILED";
 export const SET_CURRENT_TITLE = "SET_CURRENT_TITLE";
+export const GET_FILM_BY_NAME_REQUEST = "GET_FILM_BY_NAME_REQUEST";
+export const GET_FILM_BY_NAME_SUCCESS = "GET_FILM_BY_NAME_SUCCESS";
+export const GET_FILM_BY_NAME_FAILED = "GET_FILM_BY_NAME_FAILED";
 
 interface IGetTopFilmsRequest {
   readonly type: typeof GET_TOP_FILMS_REQUEST;
@@ -23,12 +26,25 @@ interface ISetCurrentTitle {
   readonly type: typeof SET_CURRENT_TITLE;
   id: number;
 }
+interface IGetFilmByNameRequest {
+  readonly type: typeof GET_FILM_BY_NAME_REQUEST;
+}
+interface IGetFilmByNameSuccess {
+  readonly type: typeof GET_FILM_BY_NAME_SUCCESS;
+  film: any;
+}
+interface IGetFilmByNameFailed {
+  readonly type: typeof GET_FILM_BY_NAME_FAILED;
+}
 
 export type TFilmsActions =
   | IGetTopFilmsRequest
   | IGetTopFilmsSuccess
   | IGetTopFilmsFailed
-  | ISetCurrentTitle;
+  | ISetCurrentTitle
+  | IGetFilmByNameRequest
+  | IGetFilmByNameSuccess
+  | IGetFilmByNameFailed;
 
 export const getTopFilmsRequestAction = (): IGetTopFilmsRequest => ({
   type: GET_TOP_FILMS_REQUEST,
@@ -48,6 +64,21 @@ export const setCurrentTitleAction = (id: number): ISetCurrentTitle => ({
   id,
 });
 
+export const getFilmByNameRequestAction = (): IGetFilmByNameRequest => ({
+  type: GET_FILM_BY_NAME_REQUEST,
+});
+
+export const getFilmByNameSuccessAction = (
+  film: any
+): IGetFilmByNameSuccess => ({
+  type: GET_FILM_BY_NAME_SUCCESS,
+  film,
+});
+
+export const getFilmByNameFailedAction = (): IGetFilmByNameFailed => ({
+  type: GET_FILM_BY_NAME_FAILED,
+});
+
 export const getTopFilmsThunk: AppThunk = () => {
   return function (dispatch: AppDispatch) {
     dispatch(getTopFilmsRequestAction());
@@ -58,6 +89,20 @@ export const getTopFilmsThunk: AppThunk = () => {
       })
       .catch(() => {
         dispatch(getTopFilmsFailedAction());
+      });
+  };
+};
+
+export const getFilmByNameThunk: AppThunk = (name: string) => {
+  return function (dispatch: AppDispatch) {
+    dispatch(getFilmByNameRequestAction());
+    return getFilmByName(name)
+      .then((film) => {
+        console.log(film);
+        dispatch(getFilmByNameSuccessAction(film.docs));
+      })
+      .catch(() => {
+        dispatch(getFilmByNameFailedAction());
       });
   };
 };
