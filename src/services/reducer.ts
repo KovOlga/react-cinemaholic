@@ -1,6 +1,9 @@
 import { mock } from "../constants/mock";
 import { IFilm } from "../types/data";
 import {
+  GET_FILM_BY_ID_FAILED,
+  GET_FILM_BY_ID_REQUEST,
+  GET_FILM_BY_ID_SUCCESS,
   GET_FILM_BY_NAME_FAILED,
   GET_FILM_BY_NAME_REQUEST,
   GET_FILM_BY_NAME_SUCCESS,
@@ -19,6 +22,9 @@ export interface IInitialState {
   filmByName: IFilm[];
   filmByNameInProccess: boolean;
   filmByNameFailed: boolean;
+  filmById: IFilm | null;
+  filmByIdInProccess: boolean;
+  filmByIdFailed: boolean;
 }
 
 const initialState: IInitialState = {
@@ -29,6 +35,9 @@ const initialState: IInitialState = {
   filmByName: [],
   filmByNameInProccess: false,
   filmByNameFailed: false,
+  filmById: null,
+  filmByIdInProccess: false,
+  filmByIdFailed: false,
 };
 
 export const filmsReducer = (
@@ -77,6 +86,25 @@ export const filmsReducer = (
     }
     case GET_FILM_BY_NAME_FAILED: {
       return { ...state, filmByNameFailed: true, filmByNameInProccess: false };
+    }
+    case GET_FILM_BY_ID_REQUEST: {
+      return {
+        ...state,
+        filmByIdInProccess: true,
+        filmById: null,
+        filmByIdFailed: false,
+      };
+    }
+    case GET_FILM_BY_ID_SUCCESS: {
+      return {
+        ...state,
+        filmByIdInProccess: false,
+        filmByIdFailed: false,
+        filmById: action.film,
+      };
+    }
+    case GET_FILM_BY_ID_FAILED: {
+      return { ...state, filmByIdFailed: true, filmByIdInProccess: false };
     }
     default:
       return state;

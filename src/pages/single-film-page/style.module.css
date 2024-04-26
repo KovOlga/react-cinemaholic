@@ -1,0 +1,102 @@
+.comic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comic__cont {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.poster {
+  display: block;
+  width: 293px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.comic__info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 550px;
+}
+
+.name {
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  line-height: 29px;
+  font-weight: 500;
+}
+
+.name__bold {
+  font-weight: bold;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.raiting {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  color: #9f0013;
+  margin: 0px;
+}
+
+.comic__back {
+  border: none;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  justify-self: end;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.comic__back:hover {
+  color: #9f0013;
+}
+
+.block {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+.block__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.block__item {
+  box-sizing: border-box;
+  line-height: 25px;
+  margin-top: 10px;
+}
+
+.year {
+  margin: 0;
+  font-size: 18px;
+}
+
+.img {
+  display: block;
+  width: 100%;
+}

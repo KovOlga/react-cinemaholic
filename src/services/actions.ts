@@ -1,5 +1,6 @@
 import { AppDispatch, AppThunk } from "../types";
-import { getFilmByName, getTopFilmsList } from "./api";
+import { IFilm } from "../types/data";
+import { getFilmById, getFilmByName, getTopFilmsList } from "./api";
 
 export const GET_TOP_FILMS_REQUEST = "GET_TOP_FILMS_REQUEST";
 export const GET_TOP_FILMS_SUCCESS = "GET_TOP_FILMS_SUCCESS";
@@ -8,6 +9,9 @@ export const SET_CURRENT_TITLE = "SET_CURRENT_TITLE";
 export const GET_FILM_BY_NAME_REQUEST = "GET_FILM_BY_NAME_REQUEST";
 export const GET_FILM_BY_NAME_SUCCESS = "GET_FILM_BY_NAME_SUCCESS";
 export const GET_FILM_BY_NAME_FAILED = "GET_FILM_BY_NAME_FAILED";
+export const GET_FILM_BY_ID_REQUEST = "GET_FILM_BY_ID_REQUEST";
+export const GET_FILM_BY_ID_SUCCESS = "GET_FILM_BY_ID_SUCCESS";
+export const GET_FILM_BY_ID_FAILED = "GET_FILM_BY_ID_FAILED";
 
 interface IGetTopFilmsRequest {
   readonly type: typeof GET_TOP_FILMS_REQUEST;
@@ -36,6 +40,16 @@ interface IGetFilmByNameSuccess {
 interface IGetFilmByNameFailed {
   readonly type: typeof GET_FILM_BY_NAME_FAILED;
 }
+interface IGetFilmByIdRequest {
+  readonly type: typeof GET_FILM_BY_ID_REQUEST;
+}
+interface IGetFilmByIdSuccess {
+  readonly type: typeof GET_FILM_BY_ID_SUCCESS;
+  film: IFilm;
+}
+interface IGetFilmByIdFailed {
+  readonly type: typeof GET_FILM_BY_ID_FAILED;
+}
 
 export type TFilmsActions =
   | IGetTopFilmsRequest
@@ -44,7 +58,10 @@ export type TFilmsActions =
   | ISetCurrentTitle
   | IGetFilmByNameRequest
   | IGetFilmByNameSuccess
-  | IGetFilmByNameFailed;
+  | IGetFilmByNameFailed
+  | IGetFilmByIdRequest
+  | IGetFilmByIdSuccess
+  | IGetFilmByIdFailed;
 
 export const getTopFilmsRequestAction = (): IGetTopFilmsRequest => ({
   type: GET_TOP_FILMS_REQUEST,
@@ -79,6 +96,19 @@ export const getFilmByNameFailedAction = (): IGetFilmByNameFailed => ({
   type: GET_FILM_BY_NAME_FAILED,
 });
 
+export const getFilmByIdRequestAction = (): IGetFilmByIdRequest => ({
+  type: GET_FILM_BY_ID_REQUEST,
+});
+
+export const getFilmByIdSuccessAction = (film: any): IGetFilmByIdSuccess => ({
+  type: GET_FILM_BY_ID_SUCCESS,
+  film,
+});
+
+export const getFilmByIdFailedAction = (): IGetFilmByIdFailed => ({
+  type: GET_FILM_BY_ID_FAILED,
+});
+
 export const getTopFilmsThunk: AppThunk = () => {
   return function (dispatch: AppDispatch) {
     dispatch(getTopFilmsRequestAction());
@@ -103,6 +133,20 @@ export const getFilmByNameThunk: AppThunk = (name: string) => {
       })
       .catch(() => {
         dispatch(getFilmByNameFailedAction());
+      });
+  };
+};
+
+export const getFilmByIdThunk: AppThunk = (id: number) => {
+  return function (dispatch: AppDispatch) {
+    dispatch(getFilmByIdRequestAction());
+    return getFilmById(id)
+      .then((film) => {
+        console.log(film);
+        dispatch(getFilmByIdSuccessAction(film));
+      })
+      .catch(() => {
+        dispatch(getFilmByIdFailedAction());
       });
   };
 };

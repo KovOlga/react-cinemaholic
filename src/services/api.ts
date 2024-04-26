@@ -43,3 +43,13 @@ export const getFilmByName = (name: string): Promise<any> => {
     }
   );
 };
+
+export const getFilmById = (id: number): Promise<any> => {
+  return request(`https://api.kinopoisk.dev/v1.4/movie/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": "D8K67KE-8F9M6D5-K40CBW6-QHHZMY1",
+    },
+  });
+};

@@ -1,0 +1,33 @@
+.modal {
+  position: relative;
+  margin: 0 auto;
+  width: 500px;
+  border-radius: 40px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_close {
+  background: none;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  aspect-ratio: 1/1;
+  background-image: url("../../assets/images/Close-Icon2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.4s linear;
+}
+
+.btn_close:hover {
+  opacity: 0.6;
+}

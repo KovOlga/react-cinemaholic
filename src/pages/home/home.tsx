@@ -3,8 +3,9 @@ import FilmInfo from "../../components/film-info";
 import TitleList from "../../components/title-list";
 import style from "./style.module.css";
 import FilmSearchForm from "../../components/film-search-form";
+import { FC } from "react";
 
-const MainPage = () => {
+const MainPage: FC = () => {
   // const dispatch = useAppDispatch();
   // useEffect(() => {
   //   // dispatch(getTopFilmsThunk());
