@@ -1,4 +1,12 @@
 .layout {
   display: flex;
   flex-direction: column;
+  width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 50px 174px 50px 166px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
