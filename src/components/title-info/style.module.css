@@ -1,10 +1,4 @@
-.oneChar {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.charInfo {
+.section {
   box-sizing: border-box;
   padding: 25px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
@@ -15,25 +9,25 @@
   flex-direction: column;
 }
 
-.charinfo__basics {
+.info {
   display: flex;
   flex-direction: row;
   gap: 25px;
 }
 
-.charinfo__img {
+.poster {
   width: 150px;
-  height: 150px;
   object-fit: cover;
 }
 
-.charinfo__mini {
+.info__main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
 }
 
-.charinfo__name {
+.name {
   margin: 0;
   padding: 0;
   font-weight: bold;
@@ -42,17 +36,11 @@
   text-transform: uppercase;
 }
 
-.charinfo__descr {
+.description {
   margin: 0;
   margin-top: 15px;
   font-size: 14px;
   line-height: 18px;
-}
-
-.charinfo__btns {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .button {
@@ -95,14 +83,6 @@
 
 .button__main::after {
   background-color: #9f0013;
-}
-
-.button__secondary::before {
-  background-color: #5c5c5c;
-}
-
-.button__secondary::after {
-  background-color: #5c5c5c;
 }
 
 .inner {
@@ -152,21 +132,7 @@
   border-color: #9f0013 transparent;
 }
 
-.inner__secondary {
-  background-color: #5c5c5c;
-}
-
-.inner__secondary::before {
-  border-color: #5c5c5c transparent;
-  transition: none;
-}
-
-.inner__secondary::after {
-  border-color: #5c5c5c transparent;
-  transition: none;
-}
-
-.comics {
+.block {
   margin: 0;
   font-weight: bold;
   font-size: 18px;
@@ -174,19 +140,23 @@
   margin-top: 10px;
 }
 
-.comics__list {
+.block__list {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.block__item {
+  box-sizing: border-box;
+  line-height: 25px;
   margin-top: 10px;
 }
 
-.comics__item {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0px 10px;
-  line-height: 25px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 10px;
+.year {
+  margin: 0;
+  font-size: 18px;
 }

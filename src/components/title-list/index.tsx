@@ -4,6 +4,9 @@ import styles from "./style.module.css";
 import TitleListItem from "../title-list-item";
 import Spinner from "../spinner";
 import { mock } from "../../constants/mock";
+import { IFilm } from "../../types/data";
+import { useAppDispatch } from "../../hooks/hooks";
+import { setCurrentTitleAction } from "../../services/actions";
 
 const TitleList: FC = () => {
   const [charList, setCharList] = useState([]);
@@ -13,6 +16,7 @@ const TitleList: FC = () => {
   const [char, setChar] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const dispatch = useAppDispatch();
 
   // const { loading, error, getAllCharacters } = useMarvelService();
 
@@ -44,15 +48,20 @@ const TitleList: FC = () => {
 
   const itemRefs = useRef([]);
 
-  const focusOnItem = (id) => {
+  const focusOnItem = (id: number) => {
     itemRefs.current[id].focus();
   };
 
-  const renderItems = (arr) => {
-    const items = arr.map((char, i) => {
+  const onCharSelected = (id: number) => {
+    console.log("id", id);
+    dispatch(setCurrentTitleAction(id));
+  };
+
+  const renderItems = (arr: IFilm[]) => {
+    const items = arr.map((item, i) => {
       return (
         <CSSTransition
-          key={char.id}
+          key={item.id}
           timeout={500}
           classNames={{
             enter: styles.char__item_enter,
@@ -60,10 +69,10 @@ const TitleList: FC = () => {
           }}
         >
           <TitleListItem
-            key={char.id}
+            key={item.id}
             ref={(el) => (itemRefs.current[i] = el)}
             onClickItem={() => {
-              //   onCharSelected(char.id);
+              onCharSelected(item.id);
               focusOnItem(i);
             }}
             // onKeyPress={(e) => {
@@ -72,7 +81,7 @@ const TitleList: FC = () => {
             //     focusOnItem(i);
             //   }
             // }}
-            titleItem={char}
+            titleItem={item}
           />
         </CSSTransition>
       );
