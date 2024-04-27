@@ -77,7 +77,7 @@ const FilmSearchForm: FC = () => {
                   </p>
                   <Button
                     type={ButtonType.Link}
-                    linkTo={`/films/${filmByName[0].id}`}
+                    linkTo={`/films/${film.id}`}
                     buttonText="Перейти"
                   />
                 </li>

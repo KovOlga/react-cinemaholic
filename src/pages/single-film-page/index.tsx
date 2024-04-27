@@ -48,7 +48,9 @@ const SingleFilmPage: FC = () => {
             <div className={style.comic__info}>
               <h2 className={style.name}>
                 На русском:{" "}
-                <span className={style.name__bold}> {film.name}</span>
+                <span className={style.name__bold}>
+                  {film.name ? film.name : "Не переведено"}
+                </span>
               </h2>
               <h2 className={style.name}>
                 На языке оригинала:{" "}
@@ -60,7 +62,8 @@ const SingleFilmPage: FC = () => {
               </p>
               <p className={style.year}>Год: {film.year}</p>
               <p className={style.raiting}>
-                Рейтинг на imdb: {film.rating.imdb}
+                Рейтинг на imdb:{" "}
+                <span className={style.raiting__span}>{film.rating.imdb}</span>
               </p>
               <div>
                 <p className={style.block}>Жанры:</p>
@@ -77,10 +80,10 @@ const SingleFilmPage: FC = () => {
               </div>
             </div>
           </div>
-          <Link to="/">
-            <button className={style.comic__back}>Back to all</button>
+          <Link to="/" className={style.link}>
+            Вернуться назад
           </Link>
-          {showModal && (
+          {showModal && film.poster.url && (
             <Modal onClose={onCloseModal}>
               <img
                 className={style.img}

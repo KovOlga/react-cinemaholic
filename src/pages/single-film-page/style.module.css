@@ -46,14 +46,17 @@
 }
 
 .raiting {
-  font-weight: bold;
   font-size: 24px;
   line-height: 32px;
-  color: #9f0013;
   margin: 0px;
 }
 
-.comic__back {
+.raiting__span {
+  font-weight: bold;
+  color: #9f0013;
+}
+
+.link {
   border: none;
   background-color: inherit;
   margin: 0;
@@ -62,10 +65,15 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #914851;
+  opacity: 1;
+  transition: opacity 0.4s linear;
 }
 
-.comic__back:hover {
-  color: #9f0013;
+.link:hover {
+  opacity: 0.7;
 }
 
 .block {
