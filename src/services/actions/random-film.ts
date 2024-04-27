@@ -44,7 +44,6 @@ export const getRandomFilmThunk: AppThunk = () => {
     dispatch(getRandomFilmRequestAction());
     return getRandomFilm()
       .then((film) => {
-        console.log(film);
         dispatch(getRandomFilmSuccessAction(film));
       })
       .catch(() => {

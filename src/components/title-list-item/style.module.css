@@ -1,4 +1,4 @@
-.char__item {
+.item {
   box-sizing: border-box;
   margin: 0;
   width: 200px;
@@ -12,18 +12,18 @@
   align-items: center;
 }
 
-.char__item:focus {
+.item:focus {
   box-shadow: 0 5px 20px #9f0013;
   transform: translateY(-8px);
 }
 
-.charlist__img {
+.img {
   display: block;
   width: 100%;
   object-fit: cover;
 }
 
-.charlist__name {
+.name {
   margin: 0;
   font-weight: bold;
   font-size: 20px;

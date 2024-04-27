@@ -116,7 +116,6 @@ export const getTopFilmsThunk: AppThunk = (page: number) => {
     dispatch(getTopFilmsRequestAction());
     return getTopFilmsList(page)
       .then((films) => {
-        console.log(films);
         dispatch(getTopFilmsSuccessAction(films.docs));
       })
       .catch(() => {
@@ -130,7 +129,6 @@ export const getFilmByNameThunk: AppThunk = (name: string) => {
     dispatch(getFilmByNameRequestAction());
     return getFilmByName(name)
       .then((film) => {
-        console.log(film);
         dispatch(getFilmByNameSuccessAction(film.docs));
       })
       .catch(() => {

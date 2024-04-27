@@ -10,18 +10,13 @@ interface ITitleListItemProps {
 const TitleListItem = forwardRef<HTMLLIElement, ITitleListItemProps>(
   ({ titleItem, onClickItem }, ref) => {
     return (
-      <li
-        tabIndex={0}
-        onClick={onClickItem}
-        className={style.char__item}
-        ref={ref}
-      >
+      <li tabIndex={0} onClick={onClickItem} className={style.item} ref={ref}>
         <img
-          className={style.charlist__img}
+          className={style.img}
           src={titleItem.poster.url}
           alt={titleItem.name}
         />
-        <p className={style.charlist__name}>{titleItem.name}</p>
+        <p className={style.name}>{titleItem.name}</p>
       </li>
     );
   }

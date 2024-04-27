@@ -25,17 +25,17 @@ const FilmSearchForm: FC = () => {
   );
   const notFound = useAppSelector((store: RootState) => store.films.notFound);
 
-  const findChar = (name: string) => {
+  const findFilm = (name: string) => {
     dispatch(getFilmByNameThunk(name));
   };
 
   return (
-    <div className={style.charInfo}>
+    <div className={style.search}>
       <p className={style.comics}>Или найдите фильм по названию</p>
       <Formik
         initialValues={{ name: "" }}
         onSubmit={({ name }) => {
-          findChar(name);
+          findFilm(name);
         }}
       >
         <Form className={style.form}>
@@ -58,10 +58,10 @@ const FilmSearchForm: FC = () => {
         </Form>
       </Formik>
       {filmByName && filmByName.length > 0 && (
-        <div className={style.char__searchWrapper}>
-          <div className={style.char__searchSuccess}>
+        <div className={style.wrapper}>
+          <p className={style.success}>
             Нашли! На страницу какого фильма перейти?
-          </div>
+          </p>
           <ul className={style.list}>
             {filmByName.map((film) => {
               return (

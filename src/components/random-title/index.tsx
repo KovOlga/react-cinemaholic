@@ -26,17 +26,13 @@ const RandomTitle: FC = () => {
   };
 
   return (
-    <div className={style.randomchar}>
+    <div className={style.random}>
       {error && "error"}
       {!error && isLoading && !film && <Spinner />}
       {!error && !isLoading && film && (
-        <div className={style.randomchar__changeable}>
-          <img
-            src={film.poster.url}
-            alt={film.name}
-            className={style.randomchar__img}
-          />
-          <div className={style.randomchar__info}>
+        <div className={style.changeable}>
+          <img src={film.poster.url} alt={film.name} className={style.img} />
+          <div className={style.info}>
             <h2 className={style.name}>{film.name}</h2>
             <p className={style.description}>{film.shortDescription}</p>
             <Button variant="contained">
@@ -47,12 +43,10 @@ const RandomTitle: FC = () => {
           </div>
         </div>
       )}
-      <div className={style.randomchar__static}>
-        <div className={style.randomchar__textContainer}>
-          <p className={style.randomchar__text}>
-            Нажмите на кнопку, чтобы слева появился рандомный фильм
-          </p>
-        </div>
+      <div className={style.choice}>
+        <p className={style.text}>
+          Нажмите на кнопку, чтобы слева появился рандомный фильм
+        </p>
         <Button variant="contained" onClick={updateRandomFilm}>
           Волшебный рандомайзер
         </Button>
