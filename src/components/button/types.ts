@@ -4,6 +4,7 @@ export interface IButtonProps {
   onClick?: () => void;
   buttonText: string;
   disabled?: boolean;
+  width?: string;
 }
 
 export enum ButtonType {

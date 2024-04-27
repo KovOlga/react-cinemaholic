@@ -1,4 +1,3 @@
-import { mock } from "../../constants/mock";
 import { IFilm } from "../../types/data";
 import {
   GET_FILM_BY_ID_FAILED,
@@ -30,7 +29,7 @@ export interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  films: mock,
+  films: [],
   reqInProccess: false,
   reqFailed: false,
   currentTitle: null,
@@ -53,7 +52,6 @@ export const filmsReducer = (
       return {
         ...state,
         reqInProccess: true,
-        films: [],
         reqFailed: false,
       };
     }

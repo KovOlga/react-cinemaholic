@@ -19,7 +19,7 @@ interface IGetTopFilmsRequest {
 
 interface IGetTopFilmsSuccess {
   readonly type: typeof GET_TOP_FILMS_SUCCESS;
-  films: any;
+  films: IFilm[];
 }
 
 interface IGetTopFilmsFailed {
@@ -67,7 +67,9 @@ export const getTopFilmsRequestAction = (): IGetTopFilmsRequest => ({
   type: GET_TOP_FILMS_REQUEST,
 });
 
-export const getTopFilmsSuccessAction = (films: any): IGetTopFilmsSuccess => ({
+export const getTopFilmsSuccessAction = (
+  films: IFilm[]
+): IGetTopFilmsSuccess => ({
   type: GET_TOP_FILMS_SUCCESS,
   films,
 });
@@ -109,13 +111,13 @@ export const getFilmByIdFailedAction = (): IGetFilmByIdFailed => ({
   type: GET_FILM_BY_ID_FAILED,
 });
 
-export const getTopFilmsThunk: AppThunk = () => {
+export const getTopFilmsThunk: AppThunk = (page: number) => {
   return function (dispatch: AppDispatch) {
     dispatch(getTopFilmsRequestAction());
-    return getTopFilmsList()
+    return getTopFilmsList(page)
       .then((films) => {
         console.log(films);
-        dispatch(getTopFilmsSuccessAction(films));
+        dispatch(getTopFilmsSuccessAction(films.docs));
       })
       .catch(() => {
         dispatch(getTopFilmsFailedAction());

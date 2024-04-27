@@ -1,3 +1,5 @@
+import { IFilm } from "../types/data";
+
 interface IOptions {
   method: string;
   headers: {
@@ -18,9 +20,13 @@ const request = (url: string, options: IOptions) => {
   return fetch(url, options).then(getResponse);
 };
 
-export const getTopFilmsList = (): Promise<any> => {
+export const getTopFilmsList = (
+  page: number
+): Promise<{
+  docs: IFilm[];
+}> => {
   return request(
-    "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=10&rating.imdb=10",
+    `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=6&selectFields=name&selectFields=top250&selectFields=poster&selectFields=shortDescription&selectFields=year&selectFields=genres&selectFields=countries&selectFields=id&notNullFields=poster.url`,
     {
       method: "GET",
       headers: {

@@ -9,10 +9,11 @@ const Button: FC<IButtonProps> = ({
   buttonText,
   onClick,
   disabled,
+  width,
 }) => {
   return (
     <>
-      {type === ButtonType.Link ? (
+      {type === ButtonType.Link && linkTo ? (
         <Link
           disabled={disabled}
           to={linkTo}
@@ -26,6 +27,7 @@ const Button: FC<IButtonProps> = ({
           onClick={onClick}
           className={`${style.button} ${style.button__main}`}
           disabled={disabled}
+          style={{ width: width }}
         >
           <p className={`${style.inner} ${style.inner__main}`}>{buttonText}</p>
         </button>
