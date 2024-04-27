@@ -4,14 +4,13 @@ import {
   Field,
   ErrorMessage as FormikErrorMessage,
 } from "formik";
-import * as Yup from "yup";
 import { FC } from "react";
 import style from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
 import { getFilmByNameThunk } from "../../services/actions/films";
-import Button from "../button";
-import { ButtonType } from "../button/types";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const FilmSearchForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -35,9 +34,6 @@ const FilmSearchForm: FC = () => {
       <p className={style.comics}>Или найдите фильм по названию</p>
       <Formik
         initialValues={{ name: "" }}
-        validationSchema={Yup.object({
-          name: Yup.string().required("Необходимое поле"),
-        })}
         onSubmit={({ name }) => {
           findChar(name);
         }}
@@ -50,11 +46,9 @@ const FilmSearchForm: FC = () => {
               className={style.input}
               placeholder="Введите название фильма"
             />
-            <Button
-              type={ButtonType.Submit}
-              disabled={isLoading}
-              buttonText="Найти"
-            />
+            <Button variant="contained" type="submit" disabled={isLoading}>
+              Найти
+            </Button>
           </div>
           <FormikErrorMessage
             name="name"
@@ -72,14 +66,9 @@ const FilmSearchForm: FC = () => {
             {filmByName.map((film) => {
               return (
                 <li className={style.list__item} key={film.id}>
-                  <p className={style.name}>
+                  <Link className={style.link} to={`/films/${film.id}`}>
                     {film.name === "" ? film.alternativeName : film.name}
-                  </p>
-                  <Button
-                    type={ButtonType.Link}
-                    linkTo={`/films/${film.id}`}
-                    buttonText="Перейти"
-                  />
+                  </Link>
                 </li>
               );
             })}

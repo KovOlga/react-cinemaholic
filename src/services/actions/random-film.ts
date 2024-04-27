@@ -1,4 +1,5 @@
 import { AppDispatch, AppThunk } from "../../types";
+import { IFilm } from "../../types/data";
 import { getRandomFilm } from "../api";
 
 export const GET_RANDOM_FILM_REQUEST = "GET_RANDOM_FILM_REQUEST";
@@ -11,7 +12,7 @@ interface IGetRandomFilmRequest {
 
 interface IGetRandomFilmSuccess {
   readonly type: typeof GET_RANDOM_FILM_SUCCESS;
-  film: any;
+  film: IFilm;
 }
 
 interface IGetRandomFilmFailed {
@@ -28,7 +29,7 @@ export const getRandomFilmRequestAction = (): IGetRandomFilmRequest => ({
 });
 
 export const getRandomFilmSuccessAction = (
-  film: any
+  film: IFilm
 ): IGetRandomFilmSuccess => ({
   type: GET_RANDOM_FILM_SUCCESS,
   film,

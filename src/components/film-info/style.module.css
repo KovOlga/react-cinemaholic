@@ -71,3 +71,14 @@
   margin: 0;
   font-size: 18px;
 }
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}

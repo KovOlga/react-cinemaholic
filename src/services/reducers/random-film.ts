@@ -1,4 +1,3 @@
-import { mock } from "../../constants/mock";
 import { IFilm } from "../../types/data";
 import {
   GET_RANDOM_FILM_REQUEST,
@@ -8,13 +7,13 @@ import {
 } from "../actions/random-film";
 
 export interface IInitialState {
-  film: any;
+  film: IFilm | null;
   reqInProccess: boolean;
   reqFailed: boolean;
 }
 
 const initialState: IInitialState = {
-  film: mock,
+  film: null,
   reqInProccess: false,
   reqFailed: false,
 };
@@ -28,7 +27,7 @@ export const randomFilmReducer = (
       return {
         ...state,
         reqInProccess: true,
-        film: [],
+        film: null,
         reqFailed: false,
       };
     }

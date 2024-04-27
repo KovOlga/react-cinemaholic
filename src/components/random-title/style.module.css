@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  height: 360px;
 }
 
 .randomchar__changeable {
@@ -89,4 +90,9 @@
   position: absolute;
   bottom: 14px;
   right: -37px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }
