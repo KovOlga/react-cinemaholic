@@ -2,8 +2,7 @@ import style from "./style.module.css";
 import { useRef, useEffect, FC, ReactNode } from "react";
 import ModalOverlay from "../modal-overlay";
 import { createPortal } from "react-dom";
-
-export const modalRoot = document.getElementById("react-modals");
+import { modalRoot } from "../../constants/constants";
 
 interface IModalProps {
   onClose: () => void;
@@ -11,7 +10,7 @@ interface IModalProps {
 }
 
 const Modal: FC<IModalProps> = ({ onClose, children }) => {
-  const modalContainer = useRef(null);
+  const modalContainer = useRef<HTMLDivElement>(null);
 
   const close = () => {
     onClose();

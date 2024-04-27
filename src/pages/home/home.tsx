@@ -6,10 +6,6 @@ import FilmSearchForm from "../../components/film-search-form";
 import { FC } from "react";
 
 const MainPage: FC = () => {
-  // const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   // dispatch(getTopFilmsThunk());
-  // }, []);
   return (
     <div className={style.main}>
       <RandomTitle />

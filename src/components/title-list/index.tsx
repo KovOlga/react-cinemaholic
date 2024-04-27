@@ -26,7 +26,6 @@ const TitleList: FC = () => {
   }, []);
 
   const selectFilm = (id: number) => {
-    console.log("id", id);
     dispatch(setCurrentTitleAction(id));
   };
 
@@ -46,42 +45,44 @@ const TitleList: FC = () => {
       {error && "error"}
       {isLoading && <Spinner />}
       {!error && !isLoading && (
-        <ul className={style.list}>
-          <TransitionGroup component={null}>
-            {filmsArr.length > 0 &&
-              filmsArr.map((item, i) => {
-                return (
-                  <CSSTransition
-                    key={item.id}
-                    timeout={500}
-                    classNames={{
-                      enter: style.list__item_enter,
-                      enterActive: style.list__item_enter_active,
-                    }}
-                  >
-                    <TitleListItem
+        <>
+          <ul className={style.list}>
+            <TransitionGroup component={null}>
+              {filmsArr.length > 0 &&
+                filmsArr.map((item, i) => {
+                  return (
+                    <CSSTransition
                       key={item.id}
-                      ref={(el: HTMLLIElement) => (itemRefs.current[i] = el)}
-                      onClickItem={() => {
-                        selectFilm(item.id);
-                        focusOnItem(i);
+                      timeout={500}
+                      classNames={{
+                        enter: style.list__item_enter,
+                        enterActive: style.list__item_enter_active,
                       }}
-                      titleItem={item}
-                    />
-                  </CSSTransition>
-                );
-              })}
-          </TransitionGroup>
-        </ul>
+                    >
+                      <TitleListItem
+                        key={item.id}
+                        ref={(el: HTMLLIElement) => (itemRefs.current[i] = el)}
+                        onClickItem={() => {
+                          selectFilm(item.id);
+                          focusOnItem(i);
+                        }}
+                        titleItem={item}
+                      />
+                    </CSSTransition>
+                  );
+                })}
+            </TransitionGroup>
+          </ul>
+          <div className={style.btn}>
+            <Pagination
+              page={page}
+              onChange={handlePageChange}
+              count={10}
+              color="secondary"
+            />
+          </div>
+        </>
       )}
-      <div className={style.btn}>
-        <Pagination
-          page={page}
-          onChange={handlePageChange}
-          count={10}
-          color="secondary"
-        />
-      </div>
     </section>
   );
 };

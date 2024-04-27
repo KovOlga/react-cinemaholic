@@ -29,23 +29,20 @@ const SingleFilmPage: FC = () => {
     setShowModal(false);
   };
 
-  const errorMessage = error ? "error" : null;
-  const spinner = isLoading ? <Spinner /> : null;
-
   return (
     <section className={style.section}>
-      {errorMessage}
-      {spinner}
+      {error && "error"}
+      {!error && isLoading && <Spinner />}
       {!isLoading && !error && film && (
-        <>
-          <div className={style.comic__cont}>
+        <div className={style.content}>
+          <div className={style.film}>
             <img
               onClick={() => setShowModal(true)}
               src={film.poster.url}
               alt={film.name}
               className={style.poster}
             />
-            <div className={style.comic__info}>
+            <div className={style.info}>
               <h2 className={style.name}>
                 На русском:{" "}
                 <span className={style.name__bold}>
@@ -92,7 +89,7 @@ const SingleFilmPage: FC = () => {
               />
             </Modal>
           )}
-        </>
+        </div>
       )}
     </section>
   );

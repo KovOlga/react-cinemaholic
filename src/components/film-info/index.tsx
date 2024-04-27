@@ -15,6 +15,7 @@ const FilmInfo: FC = () => {
     <section className={style.section}>
       {!currentTitle && (
         <div className={style.skeleton}>
+          <p className={style.text}>Выберете фильм из списка слева</p>
           <Skeleton variant="circular" width={40} height={40} />
           <Skeleton variant="rectangular" width={300} height={60} />
           <Skeleton variant="rectangular" width={300} height={60} />

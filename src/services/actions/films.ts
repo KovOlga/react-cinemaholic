@@ -35,7 +35,7 @@ interface IGetFilmByNameRequest {
 }
 interface IGetFilmByNameSuccess {
   readonly type: typeof GET_FILM_BY_NAME_SUCCESS;
-  film: any;
+  film: IFilm[];
 }
 interface IGetFilmByNameFailed {
   readonly type: typeof GET_FILM_BY_NAME_FAILED;
@@ -88,7 +88,7 @@ export const getFilmByNameRequestAction = (): IGetFilmByNameRequest => ({
 });
 
 export const getFilmByNameSuccessAction = (
-  film: any
+  film: IFilm[]
 ): IGetFilmByNameSuccess => ({
   type: GET_FILM_BY_NAME_SUCCESS,
   film,
@@ -102,7 +102,7 @@ export const getFilmByIdRequestAction = (): IGetFilmByIdRequest => ({
   type: GET_FILM_BY_ID_REQUEST,
 });
 
-export const getFilmByIdSuccessAction = (film: any): IGetFilmByIdSuccess => ({
+export const getFilmByIdSuccessAction = (film: IFilm): IGetFilmByIdSuccess => ({
   type: GET_FILM_BY_ID_SUCCESS,
   film,
 });
@@ -144,7 +144,6 @@ export const getFilmByIdThunk: AppThunk = (id: number) => {
     dispatch(getFilmByIdRequestAction());
     return getFilmById(id)
       .then((film) => {
-        console.log(film);
         dispatch(getFilmByIdSuccessAction(film));
       })
       .catch(() => {
