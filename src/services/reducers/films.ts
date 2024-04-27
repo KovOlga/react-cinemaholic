@@ -1,5 +1,5 @@
-import { mock } from "../constants/mock";
-import { IFilm } from "../types/data";
+import { mock } from "../../constants/mock";
+import { IFilm } from "../../types/data";
 import {
   GET_FILM_BY_ID_FAILED,
   GET_FILM_BY_ID_REQUEST,
@@ -12,7 +12,7 @@ import {
   GET_TOP_FILMS_SUCCESS,
   SET_CURRENT_TITLE,
   TFilmsActions,
-} from "./actions";
+} from "../actions/films";
 
 export interface IInitialState {
   films: IFilm[];

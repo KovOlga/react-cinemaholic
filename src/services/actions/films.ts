@@ -1,6 +1,6 @@
-import { AppDispatch, AppThunk } from "../types";
-import { IFilm } from "../types/data";
-import { getFilmById, getFilmByName, getTopFilmsList } from "./api";
+import { AppDispatch, AppThunk } from "../../types";
+import { IFilm } from "../../types/data";
+import { getFilmById, getFilmByName, getTopFilmsList } from "../api";
 
 export const GET_TOP_FILMS_REQUEST = "GET_TOP_FILMS_REQUEST";
 export const GET_TOP_FILMS_SUCCESS = "GET_TOP_FILMS_SUCCESS";

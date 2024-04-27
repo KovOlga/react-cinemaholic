@@ -10,7 +10,9 @@ import style from "./style.module.css";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
-import { getFilmByNameThunk } from "../../services/actions";
+import { getFilmByNameThunk } from "../../services/actions/films";
+import Button from "../button";
+import { ButtonType } from "../button/types";
 
 const FilmSearchForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -48,15 +50,11 @@ const FilmSearchForm: FC = () => {
               className={style.input}
               placeholder="Введите название фильма"
             />
-            <button
-              type="submit"
+            <Button
+              type={ButtonType.Submit}
               disabled={isLoading}
-              className={`${style.button} ${style.button__main}`}
-            >
-              <span className={`${style.inner} ${style.inner__main}`}>
-                Найти
-              </span>
-            </button>
+              buttonText="Найти"
+            />
           </div>
           <FormikErrorMessage
             name="name"
@@ -70,14 +68,11 @@ const FilmSearchForm: FC = () => {
           <div className={style.char__searchSuccess}>
             Нашли! Перейти на страницу фильма?
           </div>
-          <Link
-            to={`/films/${filmByName[0].id}`}
-            className={`${style.button} ${style.button__secondary}`}
-          >
-            <p className={`${style.inner} ${style.inner__secondary}`}>
-              To page
-            </p>
-          </Link>
+          <Button
+            type={ButtonType.Link}
+            linkTo={`/films/${filmByName[0].id}`}
+            buttonText="To page"
+          />
         </div>
       )}
       {filmByName.length === 0 && (

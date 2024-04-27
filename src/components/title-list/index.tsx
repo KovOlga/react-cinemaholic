@@ -6,7 +6,9 @@ import Spinner from "../spinner";
 import { mock } from "../../constants/mock";
 import { IFilm } from "../../types/data";
 import { useAppDispatch } from "../../hooks/hooks";
-import { setCurrentTitleAction } from "../../services/actions";
+import { setCurrentTitleAction } from "../../services/actions/films";
+import Button from "../button";
+import { ButtonType } from "../button/types";
 
 const TitleList: FC = () => {
   const [charList, setCharList] = useState([]);
@@ -103,16 +105,15 @@ const TitleList: FC = () => {
       {errorMessage}
       {spinner}
       {items}
-      <button
-        disabled={newItemLoading}
-        style={{ display: charEnded ? "none" : "block" }}
+      <Button
+        type={ButtonType.Button}
         onClick={() => {
           onRequest(offset);
         }}
-        className={`${styles.button} ${styles.button__main} ${styles.button__long}`}
-      >
-        <p className={`${styles.inner} ${styles.inner__main}`}>load more</p>
-      </button>
+        buttonText="Загрузить еще"
+        disabled={newItemLoading}
+      />
+      {/* style={{ display: charEnded ? "none" : "block" }} */}
     </div>
   );
 };

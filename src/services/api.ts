@@ -53,3 +53,16 @@ export const getFilmById = (id: number): Promise<any> => {
     },
   });
 };
+
+export const getRandomFilm = (): Promise<any> => {
+  return request(
+    `'https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=poster.url&notNullFields=rating.imdb`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-KEY": "D8K67KE-8F9M6D5-K40CBW6-QHHZMY1",
+      },
+    }
+  );
+};

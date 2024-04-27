@@ -3,7 +3,8 @@ import { FC } from "react";
 import Skeleton from "../skeleton";
 import { useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
-import { Link } from "react-router-dom";
+import Button from "../button";
+import { ButtonType } from "../button/types";
 
 const FilmInfo: FC = () => {
   const currentTitle = useAppSelector(
@@ -24,11 +25,11 @@ const FilmInfo: FC = () => {
             <div className={style.info__main}>
               <h2 className={style.name}>{currentTitle.name}</h2>
               <p className={style.year}>Год: {currentTitle.year}</p>
-              <Link to="/" className={`${style.button} ${style.button__main}`}>
-                <p className={`${style.inner} ${style.inner__main}`}>
-                  Узнать подробнее
-                </p>
-              </Link>
+              <Button
+                type={ButtonType.Link}
+                linkTo={`/films/${currentTitle.id}`}
+                buttonText="Узнать подробнее"
+              />
             </div>
           </div>
           <p className={style.description}>{currentTitle.shortDescription}</p>

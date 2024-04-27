@@ -6,7 +6,7 @@ import style from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
 import Spinner from "../../components/spinner";
-import { getFilmByIdThunk } from "../../services/actions";
+import { getFilmByIdThunk } from "../../services/actions/films";
 
 const SingleFilmPage: FC = () => {
   const dispatch = useAppDispatch();
