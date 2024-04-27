@@ -3,7 +3,7 @@ import * as actionCreators from "./action-creators";
 
 type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
-type ActionTypes = ReturnType<InferValueTypes<typeof actionCreators>>;
+export type ActionTypes = ReturnType<InferValueTypes<typeof actionCreators>>;
 
 export interface IInitialState {
   topFilms: IFilm[];
