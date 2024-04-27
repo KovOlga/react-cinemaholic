@@ -19,9 +19,11 @@ export interface IInitialState {
   reqInProccess: boolean;
   reqFailed: boolean;
   currentTitle: IFilm | null;
-  filmByName: IFilm[];
+  filmByName: IFilm[] | null;
   filmByNameInProccess: boolean;
   filmByNameFailed: boolean;
+  notFound: boolean;
+
   filmById: IFilm | null;
   filmByIdInProccess: boolean;
   filmByIdFailed: boolean;
@@ -32,9 +34,11 @@ const initialState: IInitialState = {
   reqInProccess: false,
   reqFailed: false,
   currentTitle: null,
-  filmByName: [],
+  filmByName: null,
   filmByNameInProccess: false,
   filmByNameFailed: false,
+  notFound: false,
+
   filmById: null,
   filmByIdInProccess: false,
   filmByIdFailed: false,
@@ -72,8 +76,9 @@ export const filmsReducer = (
       return {
         ...state,
         filmByNameInProccess: true,
-        filmByName: [],
+        filmByName: null,
         filmByNameFailed: false,
+        notFound: false,
       };
     }
     case GET_FILM_BY_NAME_SUCCESS: {
@@ -81,11 +86,17 @@ export const filmsReducer = (
         ...state,
         filmByNameInProccess: false,
         filmByNameFailed: false,
-        filmByName: action.film,
+        filmByName: action.film.length === 0 ? null : action.film,
+        notFound: action.film.length === 0,
       };
     }
     case GET_FILM_BY_NAME_FAILED: {
-      return { ...state, filmByNameFailed: true, filmByNameInProccess: false };
+      return {
+        ...state,
+        filmByNameFailed: true,
+        filmByNameInProccess: false,
+        notFound: false,
+      };
     }
     case GET_FILM_BY_ID_REQUEST: {
       return {

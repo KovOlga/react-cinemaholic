@@ -7,7 +7,6 @@ import {
 import * as Yup from "yup";
 import { FC } from "react";
 import style from "./style.module.css";
-import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
 import { getFilmByNameThunk } from "../../services/actions/films";
@@ -25,6 +24,7 @@ const FilmSearchForm: FC = () => {
   const error = useAppSelector(
     (store: RootState) => store.films.filmByNameFailed
   );
+  const notFound = useAppSelector((store: RootState) => store.films.notFound);
 
   const findChar = (name: string) => {
     dispatch(getFilmByNameThunk(name));
@@ -63,21 +63,30 @@ const FilmSearchForm: FC = () => {
           />
         </Form>
       </Formik>
-      {filmByName.length > 0 && (
+      {filmByName && filmByName.length > 0 && (
         <div className={style.char__searchWrapper}>
           <div className={style.char__searchSuccess}>
-            Нашли! Перейти на страницу фильма?
+            Нашли! На страницу какого фильма перейти?
           </div>
-          <Button
-            type={ButtonType.Link}
-            linkTo={`/films/${filmByName[0].id}`}
-            buttonText="To page"
-          />
+          <ul className={style.list}>
+            {filmByName.map((film) => {
+              return (
+                <li className={style.list__item} key={film.id}>
+                  <p className={style.name}>
+                    {film.name === "" ? film.alternativeName : film.name}
+                  </p>
+                  <Button
+                    type={ButtonType.Link}
+                    linkTo={`/films/${filmByName[0].id}`}
+                    buttonText="Перейти"
+                  />
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
-      {filmByName.length === 0 && (
-        <div className={style.error}>Фильм не найден</div>
-      )}
+      {notFound && <div className={style.error}>Фильм не найден</div>}
       {error && <div className={style.error}>Ошибка при поиске</div>}
     </div>
   );

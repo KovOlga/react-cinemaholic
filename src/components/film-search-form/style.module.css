@@ -22,8 +22,7 @@
 
 .char__searchWrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   gap: 24px;
   margin-top: 25px;
@@ -62,4 +61,26 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 24px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.list__item {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  margin: 0;
 }

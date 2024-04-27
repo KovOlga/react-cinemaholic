@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-between;
   background-color: antiquewhite;
+  width: 100%;
 }
 
-.header__title {
+.title {
   font-weight: bold;
   font-size: 28px;
   line-height: 37px;
@@ -13,7 +14,7 @@
   color: black;
 }
 
-.header__span {
+.title__span {
   color: #9f0013;
 }
 

@@ -5,12 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 const Header: FC = () => {
   return (
     <header className={style.header}>
-      <h1 className={style.header__title}>
-        <Link to="/" className={style.header__title}>
-          <span className={style.header__span}>Кино </span>
-          портал
-        </Link>
-      </h1>
+      <Link to="/" className={style.title}>
+        <span className={style.title__span}>Кино </span>
+        портал
+      </Link>
       <nav className={style.nav}>
         <ul className={style.nav__list}>
           <li className={style.nav__item}>
@@ -22,7 +20,7 @@ const Header: FC = () => {
               to="/"
               className={style.nav__btn}
             >
-              Characters
+              Фильмы
             </NavLink>
           </li>
           <li className={style.nav__item}>
@@ -33,10 +31,10 @@ const Header: FC = () => {
               style={({ isActive }) => ({
                 color: isActive ? "#9f0013" : "black",
               })}
-              to="/comics"
+              to="/director"
               className={style.nav__btn}
             >
-              Comics
+              Режиссеры
             </NavLink>
           </li>
         </ul>
