@@ -25,6 +25,13 @@
   width: 293px;
   height: 450px;
   object-fit: cover;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
+
+.poster:hover {
+  opacity: 0.7;
 }
 
 .info {
