@@ -3,18 +3,18 @@ import { useEffect, FC } from "react";
 import Spinner from "../spinner";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
-import { getRandomFilmThunk } from "../../services/actions/random-film";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { getRandomFilmThunk } from "../../services/thunks";
 
 const RandomTitle: FC = () => {
   const dispatch = useAppDispatch();
-  const film = useAppSelector((store: RootState) => store.randomFilm.film);
+  const film = useAppSelector((store: RootState) => store.films.randomFilm);
   const isLoading = useAppSelector(
-    (store: RootState) => store.randomFilm.reqInProccess
+    (store: RootState) => store.films.randomFilmLoading
   );
   const error = useAppSelector(
-    (store: RootState) => store.randomFilm.reqFailed
+    (store: RootState) => store.films.randomFilmReqFailed
   );
 
   useEffect(() => {

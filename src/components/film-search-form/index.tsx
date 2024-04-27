@@ -8,7 +8,7 @@ import { FC } from "react";
 import style from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
-import { getFilmByNameThunk } from "../../services/actions/films";
+import { getFilmByNameThunk } from "../../services/thunks";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
@@ -18,7 +18,7 @@ const FilmSearchForm: FC = () => {
     (store: RootState) => store.films.filmByName
   );
   const isLoading = useAppSelector(
-    (store: RootState) => store.films.filmByNameInProccess
+    (store: RootState) => store.films.filmByNameLoading
   );
   const error = useAppSelector(
     (store: RootState) => store.films.filmByNameFailed

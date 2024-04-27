@@ -6,13 +6,13 @@ import style from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { RootState } from "../../types";
 import Spinner from "../../components/spinner";
-import { getFilmByIdThunk } from "../../services/actions/films";
+import { getFilmByIdThunk } from "../../services/thunks";
 
 const SingleFilmPage: FC = () => {
   const dispatch = useAppDispatch();
   const film = useAppSelector((store: RootState) => store.films.filmById);
   const isLoading = useAppSelector(
-    (store: RootState) => store.films.filmByIdInProccess
+    (store: RootState) => store.films.filmByIdLoading
   );
   const error = useAppSelector(
     (store: RootState) => store.films.filmByIdFailed

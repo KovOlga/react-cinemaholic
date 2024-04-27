@@ -4,22 +4,22 @@ import style from "./style.module.css";
 import TitleListItem from "../title-list-item";
 import Spinner from "../spinner";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import {
-  getTopFilmsThunk,
-  setCurrentTitleAction,
-} from "../../services/actions/films";
+import { getTopFilmsThunk } from "../../services/thunks";
 import { RootState } from "../../types";
 import Pagination from "@mui/material/Pagination";
+import { setCurrentTitleAction } from "../../services/action-creators";
 
 const TitleList: FC = () => {
   const dispatch = useAppDispatch();
   const itemRefs = useRef<HTMLLIElement[]>([]);
   const [page, setPage] = useState(1);
-  const filmsArr = useAppSelector((store: RootState) => store.films.films);
+  const filmsArr = useAppSelector((store: RootState) => store.films.topFilms);
   const isLoading = useAppSelector(
-    (store: RootState) => store.films.reqInProccess
+    (store: RootState) => store.films.topFilmsLoading
   );
-  const error = useAppSelector((store: RootState) => store.films.reqFailed);
+  const error = useAppSelector(
+    (store: RootState) => store.films.topFilmsReqFailed
+  );
 
   useEffect(() => {
     dispatch(getTopFilmsThunk(page));
