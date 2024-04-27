@@ -24,6 +24,8 @@ export interface IInitialState {
   randomFilm: IFilm | null;
   randomFilmLoading: boolean;
   randomFilmReqFailed: boolean;
+
+  currentPage: number;
 }
 
 const initialState: IInitialState = {
@@ -44,6 +46,8 @@ const initialState: IInitialState = {
   randomFilm: null,
   randomFilmLoading: false,
   randomFilmReqFailed: false,
+
+  currentPage: 1,
 };
 
 export const filmsReducer = (
@@ -138,6 +142,9 @@ export const filmsReducer = (
     }
     case "GET_RANDOM_FILM_FAILED": {
       return { ...state, randomFilmReqFailed: true, randomFilmLoading: false };
+    }
+    case "SET_CURRENT_PAGE": {
+      return { ...state, currentPage: action.page };
     }
     default:
       return state;

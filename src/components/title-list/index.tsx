@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef } from "react";
 import style from "./style.module.css";
 import TitleListItem from "../title-list-item";
 import Spinner from "../spinner";
@@ -7,12 +7,14 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { getTopFilmsThunk } from "../../services/thunks";
 import { RootState } from "../../types";
 import Pagination from "@mui/material/Pagination";
-import { setCurrentTitleAction } from "../../services/action-creators";
+import {
+  setCurrentPageAction,
+  setCurrentTitleAction,
+} from "../../services/action-creators";
 
 const TitleList: FC = () => {
   const dispatch = useAppDispatch();
   const itemRefs = useRef<HTMLLIElement[]>([]);
-  const [page, setPage] = useState(1);
   const filmsArr = useAppSelector((store: RootState) => store.films.topFilms);
   const isLoading = useAppSelector(
     (store: RootState) => store.films.topFilmsLoading
@@ -20,9 +22,12 @@ const TitleList: FC = () => {
   const error = useAppSelector(
     (store: RootState) => store.films.topFilmsReqFailed
   );
+  const currentPage = useAppSelector(
+    (store: RootState) => store.films.currentPage
+  );
 
   useEffect(() => {
-    dispatch(getTopFilmsThunk(page));
+    dispatch(getTopFilmsThunk(currentPage));
   }, []);
 
   const selectFilm = (id: number) => {
@@ -30,7 +35,7 @@ const TitleList: FC = () => {
   };
 
   const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+    dispatch(setCurrentPageAction(value));
     dispatch(getTopFilmsThunk(value));
   };
 
@@ -75,7 +80,7 @@ const TitleList: FC = () => {
           </ul>
           <div className={style.btn}>
             <Pagination
-              page={page}
+              page={currentPage}
               onChange={handlePageChange}
               count={10}
               color="secondary"

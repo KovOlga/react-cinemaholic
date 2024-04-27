@@ -69,3 +69,9 @@ export const getRandomFilmFailedAction = () =>
   ({
     type: "GET_RANDOM_FILM_FAILED",
   } as const);
+
+export const setCurrentPageAction = (page: number) =>
+  ({
+    type: "SET_CURRENT_PAGE",
+    page,
+  } as const);

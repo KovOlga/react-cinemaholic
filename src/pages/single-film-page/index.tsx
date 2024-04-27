@@ -50,7 +50,7 @@ const SingleFilmPage: FC = () => {
                 </span>
               </h2>
               <h2 className={style.name}>
-                На языке оригинала:{" "}
+                Альтернативное название:{" "}
                 <span className={style.name__bold}>{film.alternativeName}</span>
               </h2>
               <p className={style.description}>{film.description}</p>
