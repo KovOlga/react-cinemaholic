@@ -31,7 +31,7 @@ const SingleFilmPage: FC = () => {
 
   return (
     <section className={style.section}>
-      {error && "error"}
+      {error && "Здесь должна быть обработка ошибки"}
       {!error && isLoading && <Spinner />}
       {!isLoading && !error && film && (
         <div className={style.content}>

@@ -27,7 +27,7 @@ const RandomTitle: FC = () => {
 
   return (
     <div className={style.random}>
-      {error && "error"}
+      {error && "Здесь должна быть обработка ошибки"}
       {!error && isLoading && !film && <Spinner />}
       {!error && !isLoading && film && (
         <div className={style.changeable}>

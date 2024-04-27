@@ -47,7 +47,7 @@ const TitleList: FC = () => {
 
   return (
     <section className={style.section}>
-      {error && "error"}
+      {error && "Здесь должна быть обработка ошибки"}
       {isLoading && <Spinner />}
       {!error && !isLoading && (
         <>
