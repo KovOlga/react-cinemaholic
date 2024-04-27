@@ -13,7 +13,7 @@ import Pagination from "@mui/material/Pagination";
 
 const TitleList: FC = () => {
   const dispatch = useAppDispatch();
-  const itemRefs = useRef([]);
+  const itemRefs = useRef<HTMLLIElement[]>([]);
   const [page, setPage] = useState(1);
   const filmsArr = useAppSelector((store: RootState) => store.films.films);
   const isLoading = useAppSelector(
@@ -26,16 +26,19 @@ const TitleList: FC = () => {
   }, []);
 
   const selectFilm = (id: number) => {
+    console.log("id", id);
     dispatch(setCurrentTitleAction(id));
   };
 
-  const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (_: ChangeEvent<unknown>, value: number) => {
     setPage(value);
     dispatch(getTopFilmsThunk(value));
   };
 
   const focusOnItem = (id: number) => {
-    itemRefs.current[id].focus();
+    if (itemRefs.current) {
+      itemRefs.current[id].focus();
+    }
   };
 
   return (
@@ -58,7 +61,7 @@ const TitleList: FC = () => {
                   >
                     <TitleListItem
                       key={item.id}
-                      ref={(el) => (itemRefs.current[i] = el)}
+                      ref={(el: HTMLLIElement) => (itemRefs.current[i] = el)}
                       onClickItem={() => {
                         selectFilm(item.id);
                         focusOnItem(i);

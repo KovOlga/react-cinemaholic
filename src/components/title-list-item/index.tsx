@@ -1,4 +1,4 @@
-import { FC, forwardRef } from "react";
+import { forwardRef } from "react";
 import style from "./style.module.css";
 import { IFilm } from "../../types/data";
 
@@ -7,7 +7,7 @@ interface ITitleListItemProps {
   onClickItem: () => void;
 }
 
-const TitleListItem: FC<ITitleListItemProps> = forwardRef(
+const TitleListItem = forwardRef<HTMLLIElement, ITitleListItemProps>(
   ({ titleItem, onClickItem }, ref) => {
     return (
       <li
