@@ -1,4 +1,5 @@
 import { API_KEY } from "../constants/api-key";
+import { baseURL, limit } from "../constants/constants";
 import { IFilm } from "../types/data";
 
 interface IOptions {
@@ -33,7 +34,7 @@ export const getTopFilmsList = (
   docs: IFilm[];
 }> => {
   return request(
-    `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=6&selectFields=name&selectFields=top250&selectFields=poster&selectFields=shortDescription&selectFields=year&selectFields=genres&selectFields=countries&selectFields=id&notNullFields=poster.url`,
+    `${baseURL}?page=${page}&limit=${limit}&selectFields=name&selectFields=top250&selectFields=poster&selectFields=shortDescription&selectFields=year&selectFields=genres&selectFields=countries&selectFields=id&notNullFields=poster.url`,
     options
   );
 };
@@ -44,18 +45,18 @@ export const getFilmByName = (
   docs: IFilm[];
 }> => {
   return request(
-    `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=${name}`,
+    `${baseURL}/search?page=1&limit=${limit}&query=${name}`,
     options
   );
 };
 
 export const getFilmById = (id: number): Promise<IFilm> => {
-  return request(`https://api.kinopoisk.dev/v1.4/movie/${id}`, options);
+  return request(`${baseURL}/${id}`, options);
 };
 
 export const getRandomFilm = (): Promise<IFilm> => {
   return request(
-    "https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=name&notNullFields=poster.url&notNullFields=shortDescription&notNullFields=id",
+    `${baseURL}/random?notNullFields=name&notNullFields=poster.url&notNullFields=shortDescription&notNullFields=id`,
     options
   );
 };

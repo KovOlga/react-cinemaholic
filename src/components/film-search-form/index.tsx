@@ -31,7 +31,7 @@ const FilmSearchForm: FC = () => {
 
   return (
     <div className={style.search}>
-      <p className={style.comics}>Или найдите фильм по названию</p>
+      <p className={style.text}>Или найдите фильм по названию</p>
       <Formik
         initialValues={{ name: "" }}
         onSubmit={({ name }) => {
@@ -75,8 +75,8 @@ const FilmSearchForm: FC = () => {
           </ul>
         </div>
       )}
-      {notFound && <div className={style.error}>Фильм не найден</div>}
-      {error && <div className={style.error}>Ошибка при поиске</div>}
+      {notFound && <p className={style.error}>Фильм не найден</p>}
+      {error && <p className={style.error}>Ошибка при поиске</p>}
     </div>
   );
 };
