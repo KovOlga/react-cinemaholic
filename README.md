@@ -10,8 +10,7 @@
 ## Главная страница
 
 <img src="./src/assets/images/screenshot_5.jpg" width=540px>
-<img src="./src/assets/images/screenshot_1.jpg" width=540px>
-<img src="./src/assets/images/screenshot_6.jpg" width=540px>
+<img src="./src/assets/images/screenshot_7.jpg" width=540px>
 <img src="./src/assets/images/screenshot_4.jpg" width=540px>
 
 ## Возможности:
