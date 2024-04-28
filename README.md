@@ -7,6 +7,13 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
+## Главная страница
+
+<img src="./src/assets/images/screenshot_5.jpg" width=540px>
+<img src="./src/assets/images/screenshot_1.jpg" width=540px>
+<img src="./src/assets/images/screenshot_6.jpg" width=540px>
+<img src="./src/assets/images/screenshot_4.jpg" width=540px>
+
 ## Возможности:
 
 - Загрузка рандомного фильма и его обновление по запросу
